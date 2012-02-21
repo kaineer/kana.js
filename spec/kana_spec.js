@@ -56,9 +56,17 @@ describe("Kana", function() {
 
   describe("standard kana tests", function() {
     var cases = {
-      a: "\u3042",
-      i: "\u3044",
-      u: "\u3046"
+      a: "\u3041",
+      A: "\u3042",
+      I: "\u3044",
+      U: "\u3046"
     };
+
+    _(cases).each(function(e, k) {
+      it("should translate " + k + " into " + e, function() {
+        kana.set(k);
+        expect(kana.stringify()).toEqual(e);
+      });
+    });
   });
 });
