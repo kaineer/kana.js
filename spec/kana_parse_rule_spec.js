@@ -28,5 +28,28 @@ describe("Kana.ParseRule", function() {
     it("should accept 'A' string", function() {
       expect(tryRule(rule, "A")).toBeTruthy();
     });
+
+    it("should not accept 'B' string", function() {
+      expect(tryRule(rule, "B")).not.toBeTruthy();
+    });
+
+    describe("when accepted", function() {
+      beforeEach(function() {
+        tryRule(rule, "A");
+      });
+
+      it("should contain matches array", function() {
+        expect(_.isArray(rule.matches)).toBeTruthy();
+      });
+
+      it("should contain matches with first element equal to matched fragment", function() {
+        expect(rule.matches[0]).toEqual("A");
+      });
+    });
+  });
+
+  //
+  describe("#handle", function() {
+
   });
 });
