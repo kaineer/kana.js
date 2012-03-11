@@ -24,8 +24,14 @@ describe("Kana.RomajiParser", function() {
       {input: "xtsu", expected: ["tsu"]},
 
       {input: ":",     expected: ["U"]},
-      {input: "n'",    expected: ["N"]}
+      {input: "n'",    expected: ["N"]},
 
+      // Multiply syllables
+      {input: "sakana", expected: ["SA", "KA", "NA"]},
+      {input: "mikan",  expected: ["MI", "KA", "N"]},
+
+      // NYA
+      {input: "nya",    expected: ["NI", "ya"]}
     ];
 
     _(cases).each(function(theCase) {
