@@ -4,8 +4,6 @@
     :drop   => <char number | function>,
     :push   => <string | function>
   });
-
-
 */
 
 describe("Kana.ParseRule", function() {
