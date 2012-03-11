@@ -44,6 +44,10 @@ describe("Kana.RomajiParser", function() {
         it("should return " + JSON.stringify(theCase.expected), function() {
           expect(parser.getResult()).toEqual(expected);
         });
+
+        it("should empty buffer source", function() {
+          expect(parser.buffer.getSource()).toEqual("");
+        })
       });
     });
   });
