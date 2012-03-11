@@ -11,36 +11,27 @@ describe("Kana.RomajiParser", function() {
 
   describe("parsing correct romaji", function() {
     var cases = [
-      // Single simple syllable
-      {input: "sa", expected: ["SA"]},
-      {input: "ki", expected: ["KI"]},
-      {input: "go", expected: ["GO"]},
-      {input: "ru", expected: ["RU"]},
-
-      // Vowel syllable
-      {input: "a",  expected: ["A"]},
-
-      // x* - lower case syllables
-      {input: "xa", expected: ["a"]},
-      {input: "xtsu", expected: ["tsu"]},
-
-      {input: ":",     expected: ["U"]},
-      {input: "n'",    expected: ["N"]},
-
-      // Multiply syllables
-      {input: "sakana", expected: ["SA", "KA", "NA"]},
-      {input: "mikan",  expected: ["MI", "KA", "N"]},   // TODO: check for end of string!!!
-
-      // NYA
-      {input: "nya",    expected: ["NI", "ya"]},
-      {input: "chi",    expected: ["CHI"]},
-      {input: "du",     expected: ["DZU"]},
-
-      {input: "shojo",     expected: ["SHI", "yo", "JI", "yo"]},
-
-      {input: "FORUKU",  expected: ["FU", "o", "RU", "KU"]},
-      {input: "etchi",   expected: ["E", "tsu", "CHI"]},
-      {input: "borupen", expected: ["BO", "RU", "PE", "N"]}
+      // Mostly imported from ruby test suite
+      {input: "fu",           expected: ["FU"]},
+      {input: "sakana",       expected: ["SA", "KA", "NA"]},
+      {input: "shojo",        expected: ["SHI", "yo", "JI", "yo"]},
+      {input: "shi",          expected: ["SHI"]},
+      {input: "aji",          expected: ["A", "JI"]},
+      {input: "azi",          expected: ["A", "JI"]},
+      {input: "dorobou",      expected: ["DO", "RO", "BO", "U"]},
+      {input: "dorobo:",      expected: ["DO", "RO", "BO", "U"]},
+      {input: "foruku",       expected: ["FU", "o", "RU", "KU"]},
+      {input: "ookii",        expected: ["O", "O", "KI", "I"]},
+      {input: "onna",         expected: ["O", "N", "NA"]},
+      {input: "chotto",       expected: ["CHI", "yo", "tsu", "TO"]},
+      {input: "isshoni",      expected: ["I", "tsu", "SHI", "yo", "NI"]},
+      {input: "etchi",        expected: ["E", "tsu", "CHI"]},
+      {input: "ecchi",        expected: ["E", "tsu", "CHI"]},
+      {input: "kon'ya",       expected: ["KO", "N", "YA"]},
+      {input: "nyobou",       expected: ["NI", "yo", "BO", "U"]},
+      {input: "enpitsu",      expected: ["E", "N", "PI", "TSU"]},
+      {input: "patexi",       expected: ["PA", "TE", "i"]},
+      {input: "axtsu",        expected: ["A", "tsu"]}
     ];
 
     _(cases).each(function(theCase) {
