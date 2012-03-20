@@ -3,6 +3,8 @@ describe("Kana.RomajiParser", function() {
   var parser;
   var expected;
 
+  var suffix = "";
+
   var parse = function(string) {
     var parser = new Kana.RomajiParser(string);
     parser.parse();
@@ -47,8 +49,30 @@ describe("Kana.RomajiParser", function() {
 
         it("should empty buffer source", function() {
           expect(parser.buffer.getSource()).toEqual("");
-        })
+        });
+
+        it("should have 'success' state", function() {
+          expect(parser.getState()).toEqual("success");
+        });
       });
+    });
+  });
+
+  describe("parsing partial romaji", function() {
+    beforeEach(function() {
+      parser = parse("sak");
+    });
+
+    it("should return [\"SA\"]", function() {
+      expect(parser.getResult()).toEqual(["SA"]);
+    });
+
+    it("should keep K in buffer", function() {
+      expect(parser.buffer.getSource()).toEqual("K");
+    });
+
+    it("should have 'failure' state", function() {
+      expect(parser.getState()).toEqual("failure");
     });
   });
 });
