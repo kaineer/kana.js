@@ -4,7 +4,6 @@
 describe("Kana", function() {
   var kana;
 
-/*
   beforeEach(function() {
     this.addMatchers({
       toHaveMethod: function(methodName) {
@@ -19,7 +18,6 @@ describe("Kana", function() {
     });
 
     it("should respond to stringify", function() {
-      // expect(typeof(kana.stringify)).toEqual("function");
       expect(kana).toHaveMethod("stringify");
     });
 
@@ -55,20 +53,37 @@ describe("Kana", function() {
     });
   });
 
-  describe("standard kana tests", function() {
-    var cases = {
-      a: "\u3041",
-      A: "\u3042",
-      I: "\u3044",
-      U: "\u3046"
-    };
+  describe("translate fully entered kana", function() {
+    var setValue = "sakana";
 
-    _(cases).each(function(e, k) {
-      it("should translate " + k + " into " + e, function() {
-        kana.set(k);
-        expect(kana.stringify()).toEqual(e);
-      });
+    beforeEach(function() {
+      kana = new Kana();
+      kana.set(setValue);
     });
+
+    it("should return \u3055\u304b\u306a", function() {
+      expect(kana.stringify()).toEqual("\u3055\u304b\u306a");
+    });
+
+    it("should return <span>\u3055\u304b\u306a</span>", function() {
+      expect(kana.htmlize()).toEqual("<span>\u3055\u304b\u306a</span>");
+    })
   });
-*/
+
+  describe("translate partially entered kana", function() {
+    var setValue = "sak";
+
+    beforeEach(function() {
+      kana = new Kana();
+      kana.set(setValue);
+    });
+
+    it("should return \u3055k", function() {
+      expect(kana.stringify()).toEqual("\u3055k");
+    });
+
+    it("should return <span>\u3055<u>k</u></span>", function() {
+      expect(kana.htmlize()).toEqual("<span>\u3055<u>k</u></span>");
+    })
+  });
 });

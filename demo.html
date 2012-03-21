@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Kana demo</title>
+
+    <script type="text/javascript" src="./vendor/js/underscore.js"></script>
+    <script type="text/javascript" src="./vendor/js/jquery.js"></script>
+
+    <!-- Sources -->
+    <script type="text/javascript" src="./lib/js/kana.js"></script>
+    <script type="text/javascript" src="./lib/js/kana-parse-buffer.js"></script>
+    <script type="text/javascript" src="./lib/js/kana-parse-rule.js"></script>
+    <script type="text/javascript" src="./lib/js/kana-romaji-parser.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        var kana = new Kana();
+
+        $("#romaji").keyup(function() {
+          var $this = $(this);
+          kana.set($this.val());
+          $("#kana").text(kana.stringify());
+        });
+
+        $("#search").click(function() {
+          var url = "http://images.yandex.ru/yandsearch?text=" + $("#kana").text();
+          window.location = url;
+        });
+      });
+    </script>
+    <style type="text/css">
+      #romaji {
+        font: 32px arial, sans-serif;
+        width: 800px;
+        padding-left: 10px;
+      }
+      #kana {
+        font-size: 32px;
+        width: 800px;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#">
+      <table>
+        <tr>
+          <td>
+            <input type="text" id="romaji"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id="kana"></div>
+          </td>
+        </tr>
+      </table>
+
+      <a href="#" id="search">Search</a>
+    </form>
+  </body>
+</html>
