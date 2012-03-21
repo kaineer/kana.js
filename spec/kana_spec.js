@@ -4,6 +4,7 @@
 describe("Kana", function() {
   var kana;
 
+/*
   beforeEach(function() {
     this.addMatchers({
       toHaveMethod: function(methodName) {
@@ -69,4 +70,5 @@ describe("Kana", function() {
       });
     });
   });
+*/
 });
